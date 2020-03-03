@@ -14,6 +14,11 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
+
+    companion object {
+        const val ACTION_NOTIFICATION = "ACTION_NOTIFICATION"
+    }
+
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         MethodChannel(flutterEngine.dartExecutor, "handle_notification_method")
                 .setMethodCallHandler { methodCall, result ->
@@ -56,7 +61,7 @@ class MainActivity : FlutterActivity() {
 
     private fun setPendingIntent(): PendingIntent {
         val intent = Intent(context, MainActivity::class.java)
-        intent.action = "ACTION_NOTIFICATION"
+        intent.action = ACTION_NOTIFICATION
 
         intent.putExtra("name", "Pratik")
         intent.putExtra("email", "Pratik.sherdiwala@gmail.com")
